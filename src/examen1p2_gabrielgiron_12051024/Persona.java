@@ -5,6 +5,8 @@
  */
 package examen1p2_gabrielgiron_12051024;
 
+import java.util.Random;
+
 /**
  *
  * @author Galex
@@ -17,6 +19,7 @@ public class Persona {
     private int Fuerza;
     private int Mental;
     private int Fisica;
+    private int StatsTotal = 0;
     private boolean TieneSquad = false;
 
     public Persona(String Nombre, String Poder, String Debilidad, String HeroeOVillano, int Fuerza, int Mental, int Fisica) {
@@ -27,10 +30,19 @@ public class Persona {
         this.Fuerza = Fuerza;
         this.Mental = Mental;
         this.Fisica = Fisica;
+        StatsTotal = Fuerza + Mental + Fisica;
     }
 
     public String getNombre() {
         return Nombre;
+    }
+
+    public int getStatsTotal() {
+        return StatsTotal;
+    }
+
+    public void setStatsTotal(int StatsTotal) {
+        this.StatsTotal = StatsTotal;
     }
 
     public void setNombre(String Nombre) {

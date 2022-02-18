@@ -35,4 +35,14 @@ public class Deidad extends Extraterrestre{
         this.TieneCreyentes = TieneCreyentes;
     }
     
+    public void FinalChance(Persona P1, Persona P2)
+    {
+        P1.setFuerza(P1.getFuerza() * 4);
+        P1.setFisica(P1.getFisica() * 4);
+        P1.setMental(P1.getMental() * 4);
+        
+        P2.setFisica(P2.getFisica()/2);
+        P2.setFuerza(P2.getFuerza()/2);
+        P2.setMental(P2.getMental()/2);
+    }
 }

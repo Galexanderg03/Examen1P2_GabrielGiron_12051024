@@ -5,6 +5,8 @@
  */
 package examen1p2_gabrielgiron_12051024;
 
+import java.util.Random;
+
 /**
  *
  * @author Galex
@@ -20,9 +22,19 @@ public class PersonaNormal extends Persona{
         return super.toString();
     }
     
-    public void FinalChance()
+    public void FinalChance(Persona P1, Persona P2)
     {
-        
+        Random R = new Random();
+        int a = 1+R.nextInt(3);
+        int b = 1+R.nextInt(3);
+        while(a == b)
+            b = 1+R.nextInt(3);
+
+        if(a == 1)
+            P1.setFuerza(P1.getFuerza() + (P1.getFuerza()/2));
+        else if (a == 2)
+            P1.setFisica(P1.getFisica() + (P1.getFisica()/2));
+        else if (a == 3)
+            P1.setMental(P1.getMental() + (P1.getMental()/2));
     }
-    
 }

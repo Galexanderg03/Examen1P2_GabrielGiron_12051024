@@ -142,7 +142,14 @@ static ArrayList<Universo> Universos = new ArrayList();
                 }
                 case 13:
                 {
-                    
+                    if(Escuadrones.size() == 0)
+                    {
+                        JOptionPane.showMessageDialog(null, "Debes Crear un Escuadron Primero");
+                    }
+                    else
+                    {
+                        Modificar(Escuadrones);
+                    }
                 }
                 default: JOptionPane.showMessageDialog(null, "Opcion Ingresada no valida");
             }
@@ -400,6 +407,11 @@ static ArrayList<Universo> Universos = new ArrayList();
         {
             JOptionPane.showMessageDialog(null, "Opcion no valida");
         }
+    }
+    
+    public static void Agregar(ArrayList Lista)
+    {
+        
     }
     
     public static String HeroeOVillano()

@@ -12,15 +12,25 @@ import java.util.ArrayList;
  * @author Galex
  */
 public class Escuadron {
+    private String Nombre;
     private String Base;
     private Persona Lider;
     private String HeroesOVillanos;
     private ArrayList<Persona> Miembros = new ArrayList();
 
-    public Escuadron(String Base, Persona Lider, String HeroesOVillanos) {
+    public Escuadron(String Nombre,String Base, Persona Lider, String HeroesOVillanos) {
+        this.Nombre = Nombre;
         this.Base = Base;
         this.Lider = Lider;
         this.HeroesOVillanos = HeroesOVillanos;
+    }
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
 
     public String getBase() {
@@ -57,7 +67,8 @@ public class Escuadron {
 
     @Override
     public String toString() {
-        return "Escuadron{" + "Base=" + Base + ", Lider=" + Lider + ", HeroesOVillanos=" + HeroesOVillanos + ", Miembros=" + Miembros + '}';
+        return "Escuadron{" + "Nombre=" + Nombre + ", Base=" + Base + ", Lider=" + Lider + ", HeroesOVillanos=" + HeroesOVillanos + ", Miembros=" + Miembros + '}';
     }
-    
+
+
 }

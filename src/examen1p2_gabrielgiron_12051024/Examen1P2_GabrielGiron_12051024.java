@@ -7,6 +7,7 @@ package examen1p2_gabrielgiron_12051024;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 /**
@@ -42,6 +43,7 @@ static ArrayList<Universo> Universos = new ArrayList();
                             + "12)Modificar Universos"
                             + "13)Agregar Miembros a un Squad\n"
                             + "14)Agregar Squads a un Universo\n"
+                            + "15)Simulacion"
             ));
             switch(opcion)
             {
@@ -148,7 +150,31 @@ static ArrayList<Universo> Universos = new ArrayList();
                     }
                     else
                     {
-                        Modificar(Escuadrones);
+                        Agregar(Escuadrones);
+                        break;
+                    }
+                }
+                case 14:
+                {
+                    if(Universos.size() == 0)
+                    {
+                        JOptionPane.showMessageDialog(null, "Debes Crear un Escuadron Primero");
+                    }
+                    else
+                    {
+                        Agregar(Universos);
+                        break;
+                    }
+                }
+                case 15:
+                {
+                    //if(Escuadrones.size() >= 2)
+                    {
+                        Simulacion();
+                    }
+                    //else
+                    {
+                        JOptionPane.showMessageDialog(null, "Minimo Deben Haber 2 Escuadrones");
                     }
                 }
                 default: JOptionPane.showMessageDialog(null, "Opcion Ingresada no valida");
@@ -286,10 +312,17 @@ static ArrayList<Universo> Universos = new ArrayList();
             if(pos < Personas.size())
             {
                 Lider = Personas.get(pos);
+                if(Personas.get(pos).isTieneSquad() == true)
+                {
+                    JOptionPane.showMessageDialog(null, "Esta Persona ya tiene Squad");
+                }
+                else
+                {
                 Personas.get(pos).setTieneSquad(true);
                 Escuadron E = new Escuadron(Name,Base,Lider,HeroeOVillanos);
                 E.getMiembros().add(Lider);
                 JOptionPane.showMessageDialog(null, "Escuadron Creado Exitosamente");
+                }
             }
         }
     }
@@ -411,7 +444,66 @@ static ArrayList<Universo> Universos = new ArrayList();
     
     public static void Agregar(ArrayList Lista)
     {
+        int pos = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la posicion del Universo/Escuadron"));
+        if(pos < Lista.size())
+        {
+            if(Lista.get(pos) instanceof Escuadron)
+            {
+               int pos2 = Integer.parseInt(JOptionPane.showInputDialog(Listar(Personas)+"Ingrese la posicion del Miembro en la Lista")); 
+               if(pos2 < Personas.size())
+               {
+                   if(Personas.get(pos2).isTieneSquad() == false)
+                   {
+                       ((Escuadron)Lista.get(pos)).getMiembros().add(Personas.get(pos2));
+                   }
+                   else
+                   {
+                       JOptionPane.showMessageDialog(null, "Ya Tiene Squad");
+                   }
+               }
+               else
+               {
+                   JOptionPane.showMessageDialog(null, "Opcion no valida");
+               }
+            }
+            else if(Lista.get(pos) instanceof Universo)
+            {
+                int pos2 = Integer.parseInt(JOptionPane.showInputDialog(Listar(Escuadrones)+"Ingrese la posicion del Escuadron en la Lista")); 
+                if(pos2 < Escuadrones.size())
+                {
+                    ((Universo)Lista.get(pos)).getSquads().add(Escuadrones.get(pos2));
+                }
+                else
+                {
+                   JOptionPane.showMessageDialog(null, "Opcion no valida");
+                }
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Opcion no valida");
+        }
+    }
+    
+    public static void Simulacion()
+    {
+        Random r = new Random();
+        while(true)
+            System.out.println(1+r.nextInt(3));
         
+        int pos1 = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la posicion del primer escuadron"));
+        int pos2 = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la posicion del segundo escuadron"));
+        if(pos1 == pos2)
+            JOptionPane.showMessageDialog(null, "Estas poniendo al escuadron pelear contra ellos mismos xd");
+        else
+        {
+            if(pos1 < Escuadrones.size() && pos2 < Escuadrones.size())
+            {
+                Persona Lider1 = Escuadrones.get(pos1).getLider();
+                Persona Lider2 = Escuadrones.get(pos2).getLider();
+                int c = 1+r.nextInt(3);
+            }
+        }
     }
     
     public static String HeroeOVillano()

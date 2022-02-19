@@ -110,5 +110,91 @@ public class Persona {
         return "Nombre=" + Nombre + ", Poder=" + Poder + ", Debilidad=" + Debilidad + ", HeroeOVillano=" + HeroeOVillano + ", Fuerza=" + Fuerza + ", Mental=" + Mental + ", Fisica=" + Fisica + ", TieneSquad=" + TieneSquad + '}';
     }
     
+    public void FinalChance(Persona P1, Persona P2)
+    {
+        Random R = new Random();
+        int a = 1+R.nextInt(3);
+        int b = 1+R.nextInt(3);
+        while(a == b)
+            b = 1+R.nextInt(3);
+        
+        if(P1 instanceof PersonaNormal)
+        {
+            if(a == 1)
+                P1.setFuerza(getFuerza() + (getFuerza()/2));
+            else if (a == 2)
+                P1.setFisica(getFisica() + (getFisica()/2));
+            else if (a == 3)
+                P1.setMental(getMental() + (getMental()/2));
+        }
+        else if(P1 instanceof SuperHumano)
+        {
+            if(a == 1)
+                P1.setFuerza(getFuerza() * 4);
+            else if (a == 2)
+                P1.setFisica(getFisica() * 4);
+            else if (a == 3)
+                P1.setMental(getMental() * 4);
+            
+            if(b == 1)
+                P1.setFuerza(getFuerza()/2);
+            else if (b == 2)
+                P1.setFisica(getFisica()/2);
+            else if (b == 3)
+                P1.setMental(getMental()/2);
+        }
+        else if(P1 instanceof Radioactivo)
+        {
+            if(a == 1)
+                P1.setFuerza(getFuerza() * 4);
+            else if (a == 2)
+                P1.setFisica(getFisica() * 4);
+            else if (a == 3)
+                P1.setMental(getMental() * 4);
+        }
+        else if(P1 instanceof Mutante)
+        {
+            if(a == 1)
+            P1.setFuerza(P1.getFuerza() * 2);
+        else if (a == 2)
+            P1.setFisica(P1.getFisica() * 2);
+        else if (a == 3)
+            P1.setMental(P1.getMental() * 2);
+
+        if(b == 1)
+            P2.setFuerza(P2.getFuerza()/2);
+        else if (b == 2)
+            P2.setFisica(P2.getFisica()/2);
+        else if (b == 3)
+            P2.setMental(P2.getMental()/2);
+        }
+        else if(P1 instanceof Deidad)
+        {
+            P1.setFuerza(P1.getFuerza() * 4);
+        P1.setFisica(P1.getFisica() * 4);
+        P1.setMental(P1.getMental() * 4);
+        
+        P2.setFisica(P2.getFisica()/2);
+        P2.setFuerza(P2.getFuerza()/2);
+        P2.setMental(P2.getMental()/2);
+        }
+        else if(P2 instanceof Alien)
+        {
+            if(a == 1)
+            P2.setFuerza(P2.getFuerza()/2);
+        else if (a == 2)
+            P2.setFisica(P2.getFisica()/2);
+        else if (a == 3)
+            P2.setMental(P2.getMental()/2);
+
+        if(b == 1)
+            P2.setFuerza(P2.getFuerza()/2);
+        else if (b == 2)
+            P2.setFisica(P2.getFisica()/2);
+        else if (b == 3)
+            P2.setMental(P2.getMental()/2);
+        }
+    }
+    
     
 }

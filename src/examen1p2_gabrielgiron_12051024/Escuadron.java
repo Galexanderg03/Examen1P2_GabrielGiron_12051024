@@ -67,7 +67,7 @@ public class Escuadron {
 
     @Override
     public String toString() {
-        return "Escuadron{" + "Nombre=" + Nombre + ", Base=" + Base + ", Lider=" + Lider + ", HeroesOVillanos=" + HeroesOVillanos + ", Miembros=" + Miembros + '}';
+        return "Escuadron{" + "Nombre=" + Nombre + ", Base=" + Base + ", Lider=" + Lider + ", HeroesOVillanos=" + HeroesOVillanos + '}';
     }
 
 

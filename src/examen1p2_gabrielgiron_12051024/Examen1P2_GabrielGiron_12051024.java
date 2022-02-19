@@ -168,11 +168,11 @@ static ArrayList<Universo> Universos = new ArrayList();
                 }
                 case 15:
                 {
-                    //if(Escuadrones.size() >= 2)
+                    if(Escuadrones.size() >= 2)
                     {
                         Simulacion();
                     }
-                    //else
+                    else
                     {
                         JOptionPane.showMessageDialog(null, "Minimo Deben Haber 2 Escuadrones");
                     }
@@ -488,9 +488,6 @@ static ArrayList<Universo> Universos = new ArrayList();
     public static void Simulacion()
     {
         Random r = new Random();
-        while(true)
-            System.out.println(1+r.nextInt(3));
-        
         int pos1 = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la posicion del primer escuadron"));
         int pos2 = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la posicion del segundo escuadron"));
         if(pos1 == pos2)
@@ -502,8 +499,65 @@ static ArrayList<Universo> Universos = new ArrayList();
                 Persona Lider1 = Escuadrones.get(pos1).getLider();
                 Persona Lider2 = Escuadrones.get(pos2).getLider();
                 int c = 1+r.nextInt(3);
+                if(c == 1)
+                {
+                    JOptionPane.showMessageDialog(null, "Prueba Fisica\n"+Lider1.getNombre()+ " vs " +Lider2.getNombre()+ " \n" + Lider1.getFisica() + " vs " + Lider2.getFisica());
+                    if(Lider1.getFisica() < Lider2.getFisica())
+                    {
+                        JOptionPane.showMessageDialog(null ,Lider2.getNombre()+"Es El Ganador\n El Otro Escuadron tiene una ultima oportunidad o sera derrotado");
+                        Persona Debil = MasDebil(Escuadrones.get(pos1));
+                        Debil.FinalChance(Debil, Lider2);
+                        JOptionPane.showMessageDialog(null ,Debil.getNombre() + " vs "+ Lider2.getNombre());
+                        if(Debil.getFisica() < Lider2.getFisica())
+                        {
+                            JOptionPane.showMessageDialog(null ,Lider2.getNombre()+"Es El Ganador\n El Otro Escuadron sera Eliminado");
+                            Escuadrones.remove(pos1);
+                        }
+                        else if(Debil.getFisica() > Lider2.getFisica())
+                        {
+                            JOptionPane.showMessageDialog(null ,Debil.getNombre()+"Es El Ganador\n El Otro Escuadron sera Eliminado");
+                            Escuadrones.remove(pos2);
+                        }
+                    }
+                    else if(Lider1.getFisica() > Lider2.getFisica())
+                    {
+                        JOptionPane.showMessageDialog(null ,Lider1.getNombre()+"Es El Ganador\n El Otro Escuadron tiene una ultima oportunidad o sera derrotado");
+                        Persona Debil = MasDebil(Escuadrones.get(pos2));
+                        Debil.FinalChance(Debil, Lider2);
+                        JOptionPane.showMessageDialog(null ,Debil.getNombre() + " vs "+ Lider1.getNombre());
+                        if(Debil.getFisica() < Lider1.getFisica())
+                        {
+                            JOptionPane.showMessageDialog(null ,Lider1.getNombre()+"Es El Ganador\n El Otro Escuadron sera Eliminado");
+                            Escuadrones.remove(pos1);
+                        }
+                        else if(Debil.getFisica() > Lider2.getFisica())
+                        {
+                            JOptionPane.showMessageDialog(null ,Debil.getNombre()+"Es El Ganador\n El Otro Escuadron sera Eliminado");
+                            Escuadrones.remove(pos2);
+                        }
+                    }
+                }
+                else if(c==2)
+                {
+                    
+                }
             }
         }
+    }
+    
+    public static Persona MasDebil(Escuadron Squad)
+    {
+        int stat = 0;
+        int cent = 0;
+        for (int i = 0; i < Squad.getMiembros().size(); i++) {
+            if(stat < Squad.getMiembros().get(i).getStatsTotal())
+            {
+                stat = Squad.getMiembros().get(i).getStatsTotal();
+                cent = i;
+            }
+        }
+        Persona P = Squad.getMiembros().get(cent);
+        return P;
     }
     
     public static String HeroeOVillano()
